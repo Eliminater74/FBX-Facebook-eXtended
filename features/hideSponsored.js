@@ -1,9 +1,21 @@
-export function hideSponsored() {
-    const adLabels = ['[aria-label="Sponsored"]', 'span:contains("Sponsored")'];
-    adLabels.forEach(sel => {
-        document.querySelectorAll(sel).forEach(el => {
-            const container = el.closest('div[data-pagelet]');
-            if (container) container.style.display = 'none';
-        });
-    });
+// FBX: Sponsored Content Hider
+
+function hideSponsored() {
+  const selectors = [
+    'span:contains("Sponsored")',
+    'span:contains("Suggested for you")'
+  ];
+
+  selectors.forEach((textMatch) => {
+    document.querySelectorAll('span')
+      .forEach(span => {
+        if (span.innerText && span.innerText.includes("Sponsored")) {
+          let post = span.closest('[role="article"]');
+          if (post) {
+            post.style.display = 'none';
+            console.log('🚫 Hiding Sponsored post.');
+          }
+        }
+      });
+  });
 }

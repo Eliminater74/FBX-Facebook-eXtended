@@ -1,10 +1,18 @@
-export function observeDOM() {
-    const observer = new MutationObserver(mutations => {
-        for (const mutation of mutations) {
-            if (mutation.addedNodes.length > 0) {
-                // You can call features here based on config
-            }
-        }
+// FBX: Simple DOM Observer (watch for feed changes)
+
+function observeDOM() {
+  const target = document.body;
+
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach(() => {
+      hideSponsored(); // React to DOM updates
     });
-    observer.observe(document.body, { childList: true, subtree: true });
+  });
+
+  observer.observe(target, {
+    childList: true,
+    subtree: true
+  });
+
+  console.log('👁️ FBX MutationObserver active.');
 }
