@@ -1,7 +1,9 @@
-export function injectFloatingButton() {
+function injectFloatingButton() {
+  if (document.getElementById('fbx-launcher')) return;
+
   const fbxButton = document.createElement('div');
   fbxButton.id = 'fbx-launcher';
-  fbxButton.textContent = '🧠 FBX Panel';
+  fbxButton.textContent = '⚙ FBX Panel';
   fbxButton.style.cssText = `
     position: fixed;
     bottom: 20px;
@@ -19,8 +21,9 @@ export function injectFloatingButton() {
   `;
 
   fbxButton.addEventListener('click', () => {
-    alert('🚀 FBX Panel Clicked!\nComing soon...');
+    alert('🧠 FBX Panel Clicked! (UI coming soon)');
   });
 
   document.body.appendChild(fbxButton);
+  console.log('✅ FBX button injected');
 }
